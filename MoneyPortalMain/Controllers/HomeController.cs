@@ -13,16 +13,25 @@ namespace MoneyPortalMain.Controllers
             _logger = logger;
         }
 
+        [HttpGet("")]
         public IActionResult Index()
         {
             return View();
         }
 
+        [HttpGet("[action]")]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpGet("[controller]/[action]")]
         public IActionResult Privacy()
         {
             return View();
         }
 
+        [HttpGet("[controller]/[action]")]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
