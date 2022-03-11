@@ -2,7 +2,7 @@
 
 namespace MoneyPortalMain.Controllers
 {
-    public class AccountsController : Controller
+    public class BudgetsController : Controller
     {
         [HttpGet("[controller]")]
         public IActionResult Index()
@@ -11,9 +11,9 @@ namespace MoneyPortalMain.Controllers
         }
 
         [HttpGet("[controller]/[action]")]
-        public IActionResult Details([FromQuery(Name = "id")] int accountId)
+        public IActionResult Details([FromQuery(Name = "id")] int budgetId)
         {
-            if (accountId == 0)
+            if (budgetId == 0)
             {
                 return NotFound();
             }
@@ -24,7 +24,7 @@ namespace MoneyPortalMain.Controllers
         [HttpPost("[controller]/[action]")]
         public IActionResult Create()
         {
-            return Ok("Create new savings/checking/cash/credit card account");
+            return Ok("Create new budget");
         }
     }
 }
