@@ -25,6 +25,12 @@ namespace MoneyPortalMain.Controllers
             return View();
         }
 
+        [HttpGet("[action]")]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
         [HttpGet("[controller]/[action]")]
         public IActionResult Privacy()
         {
