@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32210.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyPortalMain", "MoneyPortalMain\MoneyPortalMain.csproj", "{8E336511-06CC-4B33-B4E0-1492142990AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyPortalMain", "MoneyPortalMain\MoneyPortalMain.csproj", "{8E336511-06CC-4B33-B4E0-1492142990AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{F5F159FA-BD58-4576-80BD-A6CEFAEA50B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{8E336511-06CC-4B33-B4E0-1492142990AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E336511-06CC-4B33-B4E0-1492142990AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E336511-06CC-4B33-B4E0-1492142990AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5F159FA-BD58-4576-80BD-A6CEFAEA50B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5F159FA-BD58-4576-80BD-A6CEFAEA50B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5F159FA-BD58-4576-80BD-A6CEFAEA50B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5F159FA-BD58-4576-80BD-A6CEFAEA50B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
