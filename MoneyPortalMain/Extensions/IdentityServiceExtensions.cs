@@ -1,6 +1,10 @@
 ﻿using DataAccess;
 using DataAccess.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+using MoneyPortalMain.Services;
+using System.Text;
 
 namespace MoneyPortalMain.Extensions
 {
@@ -17,7 +21,24 @@ namespace MoneyPortalMain.Extensions
                 .AddEntityFrameworkStores<DataContext>()
                 .AddSignInManager<SignInManager<AppUser>>();
 
-            services.AddAuthentication();
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
+
+            services
+                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(opt =>
+                {
+                    // This states how our server validates our token is a valid token…
+                    // … note the “IssuerSigningKey = key” setup
+                    opt.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = key,
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                    };
+                });
+
+            services.AddScoped<TokenService>();
 
             return services;
         }
