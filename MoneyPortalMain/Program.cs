@@ -1,5 +1,7 @@
 using DataAccess;
+using DataAccess.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using MoneyPortalMain.Extensions;
@@ -47,8 +49,10 @@ using (var scope = app.Services.CreateScope())
 
     try
     {
+        var userManager = services.GetRequiredService<UserManager<AppUser>>();
         var context = services.GetRequiredService<DataContext>();
         context.Database.Migrate();
+        await Seed.SeedData(context, userManager);
     }
     catch (Exception ex)
     {
