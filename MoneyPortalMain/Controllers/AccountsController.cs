@@ -10,7 +10,9 @@ namespace MoneyPortalMain.Controllers
             return View();
         }
 
-        [HttpGet("[controller]/[action]")]
+        [HttpGet("BankAccount/[action]")]
+        [HttpGet("Cash/[action]")]
+        [HttpGet("CreditCard/[action]")]
         public IActionResult Details([FromQuery(Name = "id")] int accountId)
         {
             if (accountId == 0)
