@@ -1,5 +1,6 @@
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
+using MoneyPortalMain.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddDbContext<DataContext>(opt => {
     );
 });
 
+builder.Services.AddIdentityServices(builder.Configuration);
 
 var app = builder.Build();
 

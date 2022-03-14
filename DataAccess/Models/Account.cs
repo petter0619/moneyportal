@@ -5,8 +5,7 @@ namespace DataAccess.Models
     public class Account
     {
         public int Id { get; set; }
-        [Required]
-        [MaxLength(50)]
+        [Required, MaxLength(50)]
         public string Name { get; set; }
         [Required]
         public double StartingBalance { get; set; }
