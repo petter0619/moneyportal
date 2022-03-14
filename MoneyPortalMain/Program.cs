@@ -33,6 +33,15 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.Use((context, next) =>
+{
+    var token = context.Request.Cookies.FirstOrDefault(x => x.Key == "jwttoken");
+
+    if (token.Value != null) context.Request.Headers.Add("Authorization", "Bearer " + token.Value);
+
+    return next.Invoke();
+});
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
