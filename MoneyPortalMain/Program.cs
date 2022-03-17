@@ -1,19 +1,24 @@
+using Auth0.AspNetCore.Authentication;
 using DataAccess;
-using DataAccess.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
-using MoneyPortalMain.Extensions;
+using MoneyPortalMain.Services;
+using DataAccess.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews(opt =>
+builder.Services.AddAuth0WebAppAuthentication(options => 
 {
-    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-    opt.Filters.Add(new AuthorizeFilter(policy));
+    options.Domain = builder.Configuration["Auth0:Domain"];
+    options.ClientId = builder.Configuration["Auth0:ClientId"];
 });
+
+builder.Services.AddHttpClient("Auth0", config => 
+{
+    config.BaseAddress = new Uri("https://" + builder.Configuration["Auth0:Domain"]);
+});
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<DataContext>(opt => {
     opt.UseSqlite(
@@ -21,7 +26,10 @@ builder.Services.AddDbContext<DataContext>(opt => {
     );
 });
 
-builder.Services.AddIdentityServices(builder.Configuration);
+builder.Services.AddAntiforgery();
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 
@@ -32,15 +40,6 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
-app.Use((context, next) =>
-{
-    var token = context.Request.Cookies.FirstOrDefault(x => x.Key == "jwttoken");
-
-    if (token.Value != null) context.Request.Headers.Add("Authorization", "Bearer " + token.Value);
-
-    return next.Invoke();
-});
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -58,10 +57,9 @@ using (var scope = app.Services.CreateScope())
 
     try
     {
-        var userManager = services.GetRequiredService<UserManager<AppUser>>();
         var context = services.GetRequiredService<DataContext>();
         context.Database.Migrate();
-        await Seed.SeedData(context, userManager);
+        //await Seed.SeedData(context, userManager);
     }
     catch (Exception ex)
     {

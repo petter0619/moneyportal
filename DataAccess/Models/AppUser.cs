@@ -1,9 +1,14 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿
+using System.ComponentModel.DataAnnotations;
 
 namespace DataAccess.Models
 {
-    public class AppUser : IdentityUser
+    public class AppUser
     {
-        public string DisplayName { get; set; }
+        public int Id { get; set; }
+        [Required, MaxLength(50)]
+        public string AuthId { get; set; }
+
+        public ICollection<Account> Account { get; set; }
     }
 }

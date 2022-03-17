@@ -1,18 +1,12 @@
-﻿using DataAccess.Models;
-using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace DataAccess
 {
 	public class Seed
 	{
-		public static async Task SeedData(DataContext context, UserManager<AppUser> userManager)
+		public static async Task SeedData(DataContext context)
 		{
 			// Check that there are not users already in the database
+			/*
 			if (!userManager.Users.Any())
 			{
 				var users = new List<AppUser>
@@ -31,6 +25,7 @@ namespace DataAccess
 					await userManager.CreateAsync(user, "Pa$$w0rd!");
 				}
 			}
+			*/
 
 			/*
 			if (context.Accounts.Any()) return;

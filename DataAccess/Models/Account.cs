@@ -11,5 +11,8 @@ namespace DataAccess.Models
         public double StartingBalance { get; set; }
         [Required]
         public string Type { get; set; }
+
+        public int UserId { get; set; }
+        public AppUser User { get; set; }
     }
 }

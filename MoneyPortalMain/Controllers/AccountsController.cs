@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MoneyPortalMain.Controllers
 {
+    [Authorize]
     public class AccountsController : Controller
     {
         [HttpGet("[controller]")]

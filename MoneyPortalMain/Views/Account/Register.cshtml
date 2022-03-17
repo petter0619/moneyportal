@@ -1,0 +1,18 @@
+﻿@using MoneyPortalMain.DTOs
+@model RegisterDto
+@Html.AntiForgeryToken()
+
+<h1>Register new account</h1>
+<form method="POST" asp-action="Register">
+    <input asp-for="Email" type="email"/>
+    <br />
+    <input asp-for="Password" type="password"/>
+    <br />
+    <input asp-for="FirstName" type="text"/>
+    <br />
+    <input asp-for="LastName" type="text"/>
+    <br />
+    <input asp-for="Displayname" type="text"/>
+    <br />
+    <button type="submit">Register</button>
+</form>
