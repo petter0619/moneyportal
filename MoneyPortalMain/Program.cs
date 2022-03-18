@@ -3,6 +3,8 @@ using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using MoneyPortalMain.Services;
 using DataAccess.Repositories;
+using MoneyPortalMain.Extensions;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +21,7 @@ builder.Services.AddHttpClient("Auth0", config =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddAntiforgery();
 
 builder.Services.AddDbContext<DataContext>(opt => {
     opt.UseSqlite(
@@ -26,7 +29,14 @@ builder.Services.AddDbContext<DataContext>(opt => {
     );
 });
 
-builder.Services.AddAntiforgery();
+builder.Services.AddHealthChecks()
+    .AddDbContextCheck<DataContext>("Database", HealthStatus.Degraded)
+    .AddUrlGroup(
+        new Uri("https://" + builder.Configuration["Auth0:Domain"]),
+        "AuthenticationProvider",
+        HealthStatus.Degraded,
+        timeout: TimeSpan.FromSeconds(5)
+    );
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
@@ -40,6 +50,8 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.MapDefaultHealthChecks();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
