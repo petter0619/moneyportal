@@ -1,7 +1,10 @@
-﻿namespace MoneyPortalMain.Services
+﻿using MoneyPortalMain.DTOs;
+
+namespace MoneyPortalMain.Services
 {
     public interface IUserService
     {
-        public int AddNewUser(string authId);
+        public Task<int> AddNewUser(RegisterDto registrationInfo);
+        public Task RequestUserPasswordChange(string userId);
     }
 }

@@ -5,25 +5,15 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using MoneyPortalMain.DTOs;
-using MoneyPortalMain.Models;
-using System.Text.RegularExpressions;
 using MoneyPortalMain.Services;
 
 public class AccountController : Controller
 {
-    private readonly IConfiguration _config;
     private readonly IUserService _userService;
-    private readonly HttpClient _client;
 
-    public AccountController(
-        IConfiguration config, 
-        IHttpClientFactory clientFactory,
-        IUserService userService
-    )
+    public AccountController(IUserService userService)
     {
-        _config = config;
         _userService = userService;
-        _client = clientFactory.CreateClient("Auth0");
     }
 
     [HttpGet("Account/Login")]
@@ -83,32 +73,20 @@ public class AccountController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Register(RegisterDto registrationInfo)
     {
-        var values = new Dictionary<string, string>
-        {
-            { "client_id", _config.GetValue<string>("Auth0:ClientId") },
-            { "connection", "Username-Password-Authentication" },
-            
-            { "email", registrationInfo.Email },
-            { "password", registrationInfo.Password },
-            { "given_name", registrationInfo.FirstName },
-            { "family_name", registrationInfo.LastName },
-            { "name", $"{registrationInfo.FirstName} {registrationInfo.LastName}" },
-            { "nickname", registrationInfo.Displayname },
-        };
+        var createdUsers = await _userService.AddNewUser(registrationInfo);
 
-        var content = new FormUrlEncodedContent(values);
-        var response = await _client.PostAsync("/dbconnections/signup", content);
-        
-        response.EnsureSuccessStatusCode();
+        return RedirectToAction("Login");
+    }
 
-        var responseBody = await response.Content.ReadFromJsonAsync<Auth0User>();
+    [Authorize]
+    [HttpPost("Account/ChangePassword")]
+    public async Task<IActionResult> ChangePassword()
+    {
+        var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
-        // Add user to database
-        var createdUsers = _userService.AddNewUser(responseBody._id);
+        await _userService.RequestUserPasswordChange(userId);
 
-        return Ok(new { 
-            NewUsers = createdUsers
-        });
+        return Ok();
     }
 
     [Authorize]
