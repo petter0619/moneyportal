@@ -14,5 +14,7 @@ namespace DataAccess.Models
 
         public int UserId { get; set; }
         public AppUser User { get; set; }
+
+        public ICollection<Transaction> Transaction { get; set; }
     }
 }

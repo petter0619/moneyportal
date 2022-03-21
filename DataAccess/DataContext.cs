@@ -11,5 +11,13 @@ namespace DataAccess
 
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<AppUser>()
+                .HasIndex(u => u.AuthId)
+                .IsUnique();
+        }
     }
 }
