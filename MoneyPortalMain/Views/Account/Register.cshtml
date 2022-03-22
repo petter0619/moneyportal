@@ -1,6 +1,10 @@
 ﻿@using MoneyPortalMain.DTOs
 @model RegisterDto
 @Html.AntiForgeryToken()
+@{
+    Layout = "_RegistrationLayout";
+    ViewData["Title"] = "Register Account";
+}
 
 <h1>Register new account</h1>
 <form method="POST" asp-action="Register">
@@ -15,4 +19,5 @@
     <input asp-for="Displayname" type="text"/>
     <br />
     <button type="submit">Register</button>
+    <button>Test</button>
 </form>

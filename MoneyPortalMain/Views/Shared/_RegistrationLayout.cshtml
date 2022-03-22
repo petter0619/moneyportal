@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Money Portal</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/RegistrationLayout.css" asp-append-version="true" />
+</head>
+<body>
+    <main role="main" class="registrationContainer">
+        <div class="quoteBox">
+            <h1 class="quoteBox__title">Money Portal</h1>
+            <p id="moneyQuote" class="quoteBox__quote"></p>
+        </div>
+        <div class="formContainer">
+            @RenderBody()
+        </div>
+    </main>
+    <script src="~/js/RegistrationLayout.js" asp-append-version="true"></script>
+</body>
+</html>
