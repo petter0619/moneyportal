@@ -6,18 +6,35 @@
     ViewData["Title"] = "Register Account";
 }
 
-<h1>Register new account</h1>
-<form method="POST" asp-action="Register">
-    <input asp-for="Email" type="email"/>
-    <br />
-    <input asp-for="Password" type="password"/>
-    <br />
-    <input asp-for="FirstName" type="text"/>
-    <br />
-    <input asp-for="LastName" type="text"/>
-    <br />
-    <input asp-for="Displayname" type="text"/>
-    <br />
-    <button type="submit">Register</button>
-    <button>Test</button>
+<form method="POST" asp-action="Register" class="form" autocomplete="off">
+    <div class="form__group">
+        <input type="text" name="firstName" id="firstName" class="form__input" required>
+        <label for="firstName" class="form__label">First Name</label>
+    </div>
+    <div class="form__group">
+        <input type="text" name="lastName" id="lastName" class="form__input" required>
+        <label for="lastName" class="form__label">Last Name</label>
+    </div>
+    <div class="form__group">
+        <input type="text" name="displayName" id="displayName" class="form__input">
+        <label for="displayName" class="form__label">Display Name</label>
+    </div>
+    <div class="form__group">
+        <input type="email" name="email" id="email" class="form__input" required>
+        <label for="email" class="form__label form__label--email">Email</label>
+    </div>
+    <div class="form__group">
+        <input type="password" name="password" id="password" class="form__input" required>
+        <label for="password" class="form__label form__label--password">Password</label>
+    </div>
+    <div class="form__group">
+        <input type="password" name="confirmPassword" id="confirmPassword" class="form__input" required>
+        <label for="confirmPassword" class="form__label form__label--password">Confirm Password</label>
+    </div>
+    <div class="form__group">
+        <input type="submit" value="Register" class="form__button">
+    </div>
 </form>
+<p class="form__text">
+    Already have an account? <a asp-controller="Account" asp-action="Login" class="form__link">Log In</a>
+</p>
