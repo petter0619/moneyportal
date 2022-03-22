@@ -57,25 +57,20 @@ public class AccountController : Controller
     [HttpGet("Account/Register")]
     public async Task<IActionResult> Register()
     {
-        var model = new RegisterDto() 
-        {
-            Email = "bob@test.com",
-            Password = "Pa$$w0rd!",
-            FirstName = "Bob",
-            LastName = "Bobertson",
-            Displayname = "Bobert"
-        };
-
-        return View(model);
+        return View(new RegisterDto());
     }
     
     [HttpPost("Account/Register")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Register(RegisterDto registrationInfo)
     {
-        var createdUsers = await _userService.AddNewUser(registrationInfo);
+        if (ModelState.IsValid)
+        {
+            var createdUsers = await _userService.AddNewUser(registrationInfo);
+            return RedirectToAction("Login");
+        }
 
-        return RedirectToAction("Login");
+        return View(registrationInfo);
     }
 
     [Authorize]

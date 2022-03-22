@@ -31,7 +31,7 @@ namespace MoneyPortalMain.Services
                 { "given_name", registrationInfo.FirstName },
                 { "family_name", registrationInfo.LastName },
                 { "name", $"{registrationInfo.FirstName} {registrationInfo.LastName}" },
-                { "nickname", registrationInfo.Displayname }
+                { "nickname", registrationInfo.DisplayName }
             };
 
             var content = new FormUrlEncodedContent(values);

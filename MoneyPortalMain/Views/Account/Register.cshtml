@@ -6,35 +6,53 @@
     ViewData["Title"] = "Register Account";
 }
 
-<form method="POST" asp-action="Register" class="form" autocomplete="off">
+<form method="POST" asp-action="Register" class="form" autocomplete="off" autofill="off">
     <div class="form__group">
-        <input type="text" name="firstName" id="firstName" class="form__input" required>
-        <label for="firstName" class="form__label">First Name</label>
+        <input class="form__input" type="text" asp-for="FirstName">
+        <label asp-for="FirstName" class="form__label">
+            First Name
+        </label>
+        <span asp-validation-for="FirstName" class="form__validation"></span>
     </div>
     <div class="form__group">
-        <input type="text" name="lastName" id="lastName" class="form__input" required>
-        <label for="lastName" class="form__label">Last Name</label>
+        <input class="form__input" type="text" asp-for="LastName">
+        <label asp-for="LastName" class="form__label">
+            Last Name
+        </label>
+        <span asp-validation-for="LastName" class="form__validation"></span>
     </div>
     <div class="form__group">
-        <input type="text" name="displayName" id="displayName" class="form__input">
-        <label for="displayName" class="form__label">Display Name</label>
+        <input class="form__input" type="text" asp-for="DisplayName">
+        <label asp-for="DisplayName" class="form__label">
+            Display Name
+        </label>
+        <span asp-validation-for="DisplayName" class="form__validation"></span>
     </div>
     <div class="form__group">
-        <input type="email" name="email" id="email" class="form__input" required>
-        <label for="email" class="form__label form__label--email">Email</label>
+        <input class="form__input" type="email" asp-for="Email">
+        <label asp-for="Email" class="form__label form__label--email">
+            Email
+        </label>
+        <span asp-validation-for="Email" class="form__validation"></span>
     </div>
     <div class="form__group">
-        <input type="password" name="password" id="password" class="form__input" required>
-        <label for="password" class="form__label form__label--password">Password</label>
-    </div>
-    <div class="form__group">
-        <input type="password" name="confirmPassword" id="confirmPassword" class="form__input" required>
-        <label for="confirmPassword" class="form__label form__label--password">Confirm Password</label>
+        <input class="form__input" type="password" asp-for="Password">
+        <label asp-for="Password" class="form__label form__label--password">
+            Password
+        </label>
+        <span asp-validation-for="Password" class="form__validation"></span>
     </div>
     <div class="form__group">
         <input type="submit" value="Register" class="form__button">
     </div>
+
+    <p class="form__text">
+        Already have an account? <a asp-controller="Account" asp-action="Login" class="form__link">Log In</a>
+    </p>
 </form>
-<p class="form__text">
-    Already have an account? <a asp-controller="Account" asp-action="Login" class="form__link">Log In</a>
-</p>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

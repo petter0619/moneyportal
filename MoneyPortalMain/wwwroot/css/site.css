@@ -10,6 +10,7 @@
     --primary-red: #ff3f3f;
     --background-dark: #22252a;
     --background-light: #2d3035;
+    --fontGolor-lightGrey: #8a8d93;
 }
 
 /* --------- GLOBAL --------- */
@@ -42,7 +43,15 @@ body {
     width: 100%;
     max-width: 400px;
     margin-top: 1rem;
-    margin-bottom: 40px;
+    margin-bottom: 1rem;
+    overflow: scroll;
+    padding-top: 1rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.form::-webkit-scrollbar {
+    display: none;
 }
 
 .form__input {
@@ -51,10 +60,11 @@ body {
     border-bottom: 1px solid #444951;
     padding: 10px 0;
     background: none;
-    color: #8a8d93;
+    color: var(--fontGolor-lightGrey);
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
+    margin-bottom: 5px;
 }
 
 .form__input:focus {
@@ -65,6 +75,11 @@ body {
 .form__input:focus ~ .form__label {
     font-size: 0.85rem;
     color: var(--primary-green);
+}
+
+.form__input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px var(--background-light) inset !important;
+    -webkit-text-fill-color: var(--fontGolor-lightGrey);
 }
 
 .form__label {
@@ -125,4 +140,10 @@ body {
 .form__text {
     font-size: 0.9rem;
     color: #aaa;
+    margin: 1.5rem 0;
+}
+
+.form__validation {
+    color: var(--primary-red);
+    font-size: 0.9rem;
 }

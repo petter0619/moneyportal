@@ -18,5 +18,7 @@
         </div>
     </main>
     <script src="~/js/RegistrationLayout.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
