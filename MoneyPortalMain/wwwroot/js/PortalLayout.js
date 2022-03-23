@@ -1,9 +1,10 @@
 ﻿const menuBtn = document.querySelector('.menu-btn');
-const hamburger = document.querySelector('.menu-btn__burger');
-const nav = document.querySelector('nav');
 let showMenu = false;
 
 function toggleMenu() {
+    const hamburger = document.querySelector('.menu-btn__burger');
+    const nav = document.querySelector('nav');
+
     if (!showMenu) {
         hamburger.classList.add('open');
         nav.style.transition = "all 0.3s ease-in-out";
@@ -19,7 +20,6 @@ function toggleMenu() {
         }, 300);
 
         showMenu = false;
-
     }
 }
 

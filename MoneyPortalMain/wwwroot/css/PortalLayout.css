@@ -128,12 +128,12 @@ nav a {
     position: relative;
 }
 
-.sidebar__list--item:hover {
+.sidebar__list--item a:hover {
     background-color: #282b2f;
 }
 
-.sidebar__list--item:hover a i {
-    color: var(--primary-red);
+.sidebar__list--item a:hover i {
+    color: var(--primary-green);
     opacity: 0.95;
 }
 

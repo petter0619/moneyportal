@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Money Portal</title>
-    <script src="https://kit.fontawesome.com/b7e26214dd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/PortalLayout.css" asp-append-version="true" />
 </head>
@@ -20,55 +20,7 @@
             </div>
         </header>
         <div class="container">
-            <nav>
-                <!-- User Header -->
-                <a href="#" class="sidebar__userProfile">
-                    <div class="sidebar__header">
-                        <div class="sidebar__header--avatar">
-                            <img src="~/assets/images/avatar-blank.png" alt="">
-                        </div>
-                        <div class="sidebar__header--title">
-                            <h3>Admin, Demo</h3>
-                            <p>Admin</p>
-                        </div>
-                    </div>
-                </a>
-                <!-- Sidebar Navigation -->
-                <span class="sidebar__heading">Main</span>
-                <ul class="sidebar__list">
-                    <li class="sidebar__list--item">
-                        <a href="#">
-                            <i class="fas fa-lg fa-home"></i>Dashboard
-                        </a>
-                    </li>
-                    <li class="sidebar__list--item">
-                        <a href="#">
-                            <i class="fas fa-lg fa-project-diagram"></i>Projects
-                        </a>
-                    </li>
-                    <li class="sidebar__list--item">
-                        <a href="#">
-                            <i class="fas fa-lg fa-tasks"></i>Tickets
-                        </a>
-                    </li>
-                </ul>
-                <span class="sidebar__heading">Admin</span>
-                <ul class="sidebar__list">
-                    <li class="sidebar__list--item">
-                        <a href="#">
-                            <i class="fas fa-lg fa-user-tag"></i>Roles
-                        </a>
-                    </li>
-                </ul>
-                <span class="sidebar__heading">Logout</span>
-                <ul class="sidebar__list">
-                    <li class="sidebar__list--item">
-                        <a href="#">
-                            <i class="fas fa-lg fa-sign-out-alt"></i>Logout
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            @(await Component.InvokeAsync("PortalSidebar")) 
             <main>
                 <div class="page-header">
                     <h2>@ViewData["Title"]</h2>

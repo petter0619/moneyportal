@@ -1,0 +1,103 @@
+﻿@model IList<string>   
+
+<style>
+    .dropdown {
+        background-color: var(--background-dark);
+        list-style: none;
+        padding: 0;
+
+        height: 0;
+        overflow: hidden;
+        transition: all 0.5s ease-in;
+    }
+
+    .sidebar__list--item a:hover + .dropdown, .dropdown:hover {
+        height: calc((1.2rem + 2rem)*4);
+    }
+
+    .dropdown__item {
+        padding: 1rem;
+        padding-left: 2rem;
+    }
+
+    .dropdown__item i {
+        margin-right: 20px;
+        padding-right: 20px;
+        border-right: 1px solid #454649;
+        transition: all 3s;
+        font-size: 1.2rem;
+    }
+
+    .dropdown__item:hover {
+        background-color: #282b2f;
+    }
+</style>
+
+<nav>
+    <!-- User Header -->
+    <a href="#" class="sidebar__userProfile">
+        <div class="sidebar__header">
+            <div class="sidebar__header--avatar">
+                <img src="~/assets/images/avatar-blank.png" alt="">
+            </div>
+            <div class="sidebar__header--title">
+                <h3>Admin, Demo</h3>
+                <p>Admin</p>
+            </div>
+        </div>
+    </a>
+    <!-- Sidebar Navigation -->
+    <span class="sidebar__heading">Main</span>
+    <ul class="sidebar__list">
+        <li class="sidebar__list--item">
+            <a href="#">
+                <i class="fa-solid fa-house"></i>Dashboard
+            </a>
+        </li>
+    </ul>
+    <span class="sidebar__heading">Accounts</span>
+    <ul class="sidebar__list">
+        <li class="sidebar__list--item">
+            <a href="#">
+                <i class="fa-solid fa-building-columns"></i>Bank Accounts
+            </a>
+            <ul class="dropdown">
+                @foreach (var acccount in Model)
+                {
+                    <li class="dropdown__item">
+                        <i class="fa-solid fa-piggy-bank"></i> @acccount
+                    </li>
+                }
+                <li class="dropdown__item">
+                    <i class="fa-solid fa-plus"></i> Add Bank Account
+                </li>
+            </ul>
+        </li>
+        <li class="sidebar__list--item">
+            <a href="#">
+                <i class="fa-solid fa-credit-card"></i>Credit Cards
+            </a>
+        </li>
+        <li class="sidebar__list--item">
+            <a href="#">
+                <i class="fa-solid fa-money-bill-1-wave"></i>Cash
+            </a>
+        </li>
+    </ul>
+    <span class="sidebar__heading">Settings</span>
+    <ul class="sidebar__list">
+        <li class="sidebar__list--item">
+            <a href="#">
+                <i class="fa-solid fa-user-tag"></i>User
+            </a>
+        </li>
+    </ul>
+    <span class="sidebar__heading">Logout</span>
+    <ul class="sidebar__list">
+        <li class="sidebar__list--item">
+            <a href="#">
+                <i class="fa-solid fa-right-from-bracket"></i>Logout
+            </a>
+        </li>
+    </ul>
+</nav>
