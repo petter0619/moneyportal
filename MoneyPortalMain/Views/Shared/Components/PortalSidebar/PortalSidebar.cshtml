@@ -1,103 +1,134 @@
-﻿@model IList<string>   
+﻿@using MoneyPortalMain.DTOs
+@model List<AccountDto>
 
-<style>
-    .dropdown {
-        background-color: var(--background-dark);
-        list-style: none;
-        padding: 0;
+<link rel="stylesheet" href="~/css/PortalSidebar.css" asp-append-version="true" />
+    
+<nav class="sidebar">
+    <!-- Sidebar Header -->
+    <div class="sidebar__header">
+        <img class="sidebar__avatar" src="~/assets/images/avatar-blank.png" alt="">
+        <h3 class="sidebar__displayname">Admin, Demo</h3>
+    </div>
 
-        height: 0;
-        overflow: hidden;
-        transition: all 0.5s ease-in;
-    }
-
-    .sidebar__list--item a:hover + .dropdown, .dropdown:hover {
-        height: calc((1.2rem + 2rem)*4);
-    }
-
-    .dropdown__item {
-        padding: 1rem;
-        padding-left: 2rem;
-    }
-
-    .dropdown__item i {
-        margin-right: 20px;
-        padding-right: 20px;
-        border-right: 1px solid #454649;
-        transition: all 3s;
-        font-size: 1.2rem;
-    }
-
-    .dropdown__item:hover {
-        background-color: #282b2f;
-    }
-</style>
-
-<nav>
-    <!-- User Header -->
-    <a href="#" class="sidebar__userProfile">
-        <div class="sidebar__header">
-            <div class="sidebar__header--avatar">
-                <img src="~/assets/images/avatar-blank.png" alt="">
-            </div>
-            <div class="sidebar__header--title">
-                <h3>Admin, Demo</h3>
-                <p>Admin</p>
-            </div>
-        </div>
-    </a>
     <!-- Sidebar Navigation -->
-    <span class="sidebar__heading">Main</span>
-    <ul class="sidebar__list">
-        <li class="sidebar__list--item">
-            <a href="#">
-                <i class="fa-solid fa-house"></i>Dashboard
+    <span class="sidebar__section-title">Main</span>
+    <ul>
+        <li>
+            <a asp-controller="Accounts" asp-action="Index" class="sidebar__item">
+                <i class="fa-solid fa-house sidebar__icon"></i>Dashboard
             </a>
         </li>
     </ul>
-    <span class="sidebar__heading">Accounts</span>
-    <ul class="sidebar__list">
-        <li class="sidebar__list--item">
-            <a href="#">
-                <i class="fa-solid fa-building-columns"></i>Bank Accounts
-            </a>
-            <ul class="dropdown">
-                @foreach (var acccount in Model)
-                {
-                    <li class="dropdown__item">
-                        <i class="fa-solid fa-piggy-bank"></i> @acccount
-                    </li>
+    <span class="sidebar__section-title">Accounts</span>
+    <ul>
+        <li>
+            <button class="sidebar__item sidebar__dropdown-trigger">
+                <i class="fa-solid fa-building-columns sidebar__icon"></i>
+                Bank Accounts
+            </button>
+            <ul class="sidebar__dropdown">
+                @{
+                    var bankAccounts = Model
+                        .Where(x => x.Type == "Checking Account" || x.Type == "Savings Account")
+                        .ToList();
+
+                    @foreach (AccountDto account in bankAccounts)
+                    {
+                        <li>
+                            <a href="/BankAccount/Details?id=@account.Id" class="sidebar__item sidebar__item--dropdown">
+                                @if (account.Type == "Savings Account")
+                                {
+                                    <i class="fa-solid fa-piggy-bank sidebar__icon"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa-solid fa-money-bill-transfer sidebar__icon"></i>   
+                                }
+                                @account.Name
+                            </a>
+                        </li>
+                    }
                 }
-                <li class="dropdown__item">
-                    <i class="fa-solid fa-plus"></i> Add Bank Account
+                <li>
+                    <button class="sidebar__item sidebar__item--dropdown">
+                        <i class="fa-solid fa-plus sidebar__icon"></i> Add Bank Account
+                    </button>
                 </li>
             </ul>
         </li>
-        <li class="sidebar__list--item">
-            <a href="#">
-                <i class="fa-solid fa-credit-card"></i>Credit Cards
-            </a>
+        <li>
+            <button class="sidebar__item sidebar__dropdown-trigger">
+                <i class="fa-solid fa-credit-card sidebar__icon"></i>
+                Credit Cards
+            </button>
+            <ul class="sidebar__dropdown">
+                @{
+                    var creditCards = Model
+                        .Where(x => x.Type == "Credit Card")
+                        .ToList();
+
+                    @foreach (AccountDto account in creditCards)
+                    {
+                        <li>
+                            <a href="/CreditCard/Details?id=@account.Id" class="sidebar__item sidebar__item--dropdown">
+                                <i class="fa-solid fa-credit-card sidebar__icon"></i> 
+                                @account.Name
+                            </a>
+                        </li>
+                    }
+                }
+                <li>
+                    <button class="sidebar__item sidebar__item--dropdown">
+                        <i class="fa-solid fa-plus sidebar__icon"></i> Add Credit Card
+                    </button>
+                </li>
+            </ul>
         </li>
-        <li class="sidebar__list--item">
-            <a href="#">
-                <i class="fa-solid fa-money-bill-1-wave"></i>Cash
+        <li>
+            <button class="sidebar__item sidebar__dropdown-trigger">
+                <i class="fa-solid fa-money-bill-1-wave sidebar__icon"></i>
+                Cash
+            </button>
+            <ul class="sidebar__dropdown">
+                @{
+                    var cashReserves = Model
+                        .Where(x => x.Type == "Cash")
+                        .ToList();
+
+                    @foreach (AccountDto account in cashReserves)
+                    {
+                        <li>
+                            <a href="/Cash/Details?id=@account.Id" class="sidebar__item sidebar__item--dropdown">
+                                <i class="fa-solid fa-coins sidebar__icon"></i>
+                                @account.Name
+                            </a>
+                        </li>
+                    }
+                }
+                <li>
+                    <button class="sidebar__item sidebar__item--dropdown">
+                        <i class="fa-solid fa-plus sidebar__icon"></i> Add Cash Reserve
+                    </button>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <span class="sidebar__section-title">Settings</span>
+    <ul>
+        <li>
+            <a href="#" class="sidebar__item">
+                <i class="fa-solid fa-user-tag sidebar__icon"></i>User
             </a>
         </li>
     </ul>
-    <span class="sidebar__heading">Settings</span>
-    <ul class="sidebar__list">
-        <li class="sidebar__list--item">
-            <a href="#">
-                <i class="fa-solid fa-user-tag"></i>User
-            </a>
-        </li>
-    </ul>
-    <span class="sidebar__heading">Logout</span>
-    <ul class="sidebar__list">
-        <li class="sidebar__list--item">
-            <a href="#">
-                <i class="fa-solid fa-right-from-bracket"></i>Logout
+    <span class="sidebar__section-title">Logout</span>
+    <ul>
+        <li>
+            <a asp-controller="Account" asp-action="Logout" class="sidebar__item">
+                <i class="fa-solid fa-right-from-bracket sidebar__icon"></i>Logout
             </a>
         </li>
     </ul>
 </nav>
+
+<script src="~/js/PortalSidebar.js" asp-append-version="true"></script>

@@ -1,19 +1,19 @@
-﻿const menuBtn = document.querySelector('.menu-btn');
+﻿const sidebarTrigger = document.querySelector('.sidebar__trigger');
 let showMenu = false;
 
 function toggleMenu() {
-    const hamburger = document.querySelector('.menu-btn__burger');
-    const nav = document.querySelector('nav');
+    const hamburger = document.querySelector('.sidebar__burger');
+    const sidebar = document.querySelector('.sidebar');
 
     if (!showMenu) {
         hamburger.classList.add('open');
-        nav.style.transition = "all 0.3s ease-in-out";
-        nav.classList.add('open');
+        sidebar.style.transition = "all 0.3s ease-in-out";
+        sidebar.classList.add('open');
 
         showMenu = true;
     } else {
         hamburger.classList.remove('open');
-        nav.classList.remove('open');
+        sidebar.classList.remove('open');
 
         setTimeout(function () {
             nav.style.transition = "";
@@ -23,4 +23,4 @@ function toggleMenu() {
     }
 }
 
-menuBtn.addEventListener('click', toggleMenu);
+sidebarTrigger.addEventListener('click', toggleMenu);
