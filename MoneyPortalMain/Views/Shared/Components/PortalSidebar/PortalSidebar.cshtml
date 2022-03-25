@@ -2,12 +2,24 @@
 @model List<AccountDto>
 
 <link rel="stylesheet" href="~/css/PortalSidebar.css" asp-append-version="true" />
-    
+
+@{
+    string DisplayImage;
+    if(ViewData["DisplayImage"] == null) 
+    {
+        DisplayImage = "/assets/images/avatar-blank.png";
+    }
+    else 
+    {
+        DisplayImage = (string)ViewData["DisplayImage"];
+    }
+}
+
 <nav class="sidebar">
     <!-- Sidebar Header -->
     <div class="sidebar__header">
-        <img class="sidebar__avatar" src="~/assets/images/avatar-blank.png" alt="">
-        <h3 class="sidebar__displayname">Admin, Demo</h3>
+        <img class="sidebar__avatar" src="@DisplayImage" alt="">
+        <h3 class="sidebar__displayname">@ViewData["DisplayName"]</h3>
     </div>
 
     <!-- Sidebar Navigation -->

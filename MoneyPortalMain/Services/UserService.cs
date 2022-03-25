@@ -2,6 +2,7 @@
 using MoneyPortalMain.DTOs;
 using MoneyPortalMain.Models;
 using System.Net.Http.Headers;
+using System.Security.Claims;
 
 namespace MoneyPortalMain.Services
 {
@@ -10,12 +11,19 @@ namespace MoneyPortalMain.Services
         private readonly IUserRepository _userRepository;
         private readonly IConfiguration _config;
         private readonly IHttpClientFactory _clientFactory;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public UserService(IUserRepository userRepository, IConfiguration config, IHttpClientFactory clientFactory)
+        public UserService(
+            IUserRepository userRepository, 
+            IConfiguration config, 
+            IHttpClientFactory clientFactory,
+            IHttpContextAccessor httpContextAccessor
+        )
         {
             _userRepository = userRepository;
             _config = config;
-            _clientFactory = clientFactory; 
+            _clientFactory = clientFactory;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<int> AddNewUser(RegisterDto registrationInfo)
@@ -82,6 +90,86 @@ namespace MoneyPortalMain.Services
             var changePasswordContent = new FormUrlEncodedContent(changePasswordValues);
             var changePasswordResponse = await client.PostAsync("/dbconnections/change_password", changePasswordContent);
             changePasswordResponse.EnsureSuccessStatusCode();
+        }
+
+        public UserInfoDto GetUserDtoFromHttpContext()
+        {
+            if (IsAuthenticated())
+            {
+                return new UserInfoDto()
+                {
+                    AuthId = GetUserClaims().FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value.Replace("auth0|", ""),
+                    DisplayImage = GetUserClaims().FirstOrDefault(c => c.Type == "picture")?.Value,
+                    DisplayName = GetUserClaims().FirstOrDefault(c => c.Type == "nickname")?.Value,
+                };
+            }
+
+            return null;
+        }
+
+        public string GetDisplayName()
+        {
+            if (IsAuthenticated())
+            {
+                return GetUserClaims()
+                    .FirstOrDefault(c => c.Type == "nickname")?
+                    .Value;
+            }
+
+            return null;
+        }
+
+        public string GetDisplayImage()
+        {
+            if (IsAuthenticated())
+            {
+                return GetUserClaims()
+                    .FirstOrDefault(c => c.Type == "picture")?
+                    .Value;
+            }
+
+            return null;
+        }
+        public string GetAuthId()
+        {
+            if (IsAuthenticated())
+            {
+                return GetUserClaims()
+                    .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?
+                    .Value
+                    .Replace("auth0|", "");
+            }
+
+            return null;
+        }
+
+        public bool IsAuthenticated()
+        {
+            var context = _httpContextAccessor.HttpContext;
+
+            if (context == null) return false;
+
+            var user = _httpContextAccessor.HttpContext?.User;
+
+            if (user != null && user.Identity != null)
+            {
+                return user.Identity.IsAuthenticated;
+            }
+
+            return false;
+        }
+
+        public IEnumerable<Claim> GetUserClaims()
+        {
+            if (IsAuthenticated())
+            {
+                return _httpContextAccessor
+                    .HttpContext?
+                    .User
+                    .Claims;
+            }
+
+            return new List<Claim>();
         }
     }
 }

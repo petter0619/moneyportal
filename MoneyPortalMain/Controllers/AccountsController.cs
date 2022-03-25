@@ -6,7 +6,7 @@ namespace MoneyPortalMain.Controllers
     [Authorize]
     public class AccountsController : Controller
     {
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpGet("[controller]")]
         public IActionResult Index()
         {
