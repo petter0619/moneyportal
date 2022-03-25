@@ -16,7 +16,7 @@ function toggleMenu() {
         sidebar.classList.remove('open');
 
         setTimeout(function () {
-            nav.style.transition = "";
+            sidebar.style.transition = "";
         }, 300);
 
         showMenu = false;

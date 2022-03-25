@@ -1,27 +1,38 @@
 ﻿
 html, body {
-    font-family: "Muli", sans-serif;
     /* Variables */
     --headerheight: 80px;
-    background: var(--background-light);
+}
+
+/* -------- CONTAINERS -------- */
+
+.portal-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    min-height: calc(100vh - var(--headerheight));
+}
+
+.portal-content {
+    display: grid;
+    grid-template-rows: auto 1fr;
 }
 
 /* -------- HEADER -------- */
-header {
+.portal-header {
     border: 1px solid var(--background-light);
     height: var(--headerheight);
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: #8a8d93;
-    background: var(--background-light);
     border-bottom: 1px solid var(--border-grey);
 }
 
-header a {
+.portal-header__logo {
     display: inline-block;
     padding-top: 0.3125rem;
     padding-bottom: 0.3125rem;
+    padding-left: 30px;
     margin-right: 1rem;
     font-size: 1.25rem;
     text-decoration: none;
@@ -29,44 +40,24 @@ header a {
     text-transform: uppercase;
 }
 
-header a strong:nth-child(1) {
+.portal-header__logo--green {
     color: var(--primary-green);
-    padding-left: 30px;
 }
 
-.menu-btn {
+.sidebar__trigger {
     display: none;
-}
-
-/* -------- MAIN CONTENT CONTAINER -------- */
-
-.container {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    min-height: calc(100vh - var(--headerheight));
-}
-
-main {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    background: var(--background-dark);
-    color: #fff;
 }
 
 
 /* -------- SIDEBAR RESPONSIVE - SHRINK -------- */
 
 @media only screen and (max-width: 768px) {
-    .container {
+    .portal-container {
         grid-template-columns: 1fr;
     }
 
     .sidebar__trigger {
         display: block;
-    }
-
-    header i {
-        margin-right: 80px;
     }
 }
 
@@ -114,7 +105,7 @@ main {
 }
 
 .sidebar__burger.open {
-    transform: rotate(720deg);
+    transform: rotate(360deg);
     background: transparent;
 }
 
@@ -130,15 +121,14 @@ main {
 
 /* -------- PAGE TITLE -------- */
 
-.page-header {
+.portal-content__title-container {
     color: #8a8d93;
-    background: var(--background-light);
     border-bottom: 1px solid var(--border-grey);
     margin-bottom: 30px;
     padding: 20px 15px;
 }
 
-.page-header h2 {
+.portal-content__title {
     margin: 0;
     padding-left: 15px;
     font-size: 1.2rem;

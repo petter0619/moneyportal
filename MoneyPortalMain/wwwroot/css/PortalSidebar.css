@@ -1,18 +1,8 @@
 ﻿/* -------- SIDEBAR -------- */
 .sidebar {
     color: #6a6c70;
-    background: var(--background-light);
     border-right: 1px solid var(--border-grey);
     width: 280px;
-}
-
-ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-li {
-    position: relative;
 }
 
 /* -------- SIDEBAR HEADER -------- */
@@ -186,9 +176,5 @@ li {
     .sidebar__header {
         padding: 20px;
         width: 83%;
-    }
-
-    ul {
-        margin: 10px 0;
     }
 }

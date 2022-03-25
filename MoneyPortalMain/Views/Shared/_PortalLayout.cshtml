@@ -9,21 +9,21 @@
     <link rel="stylesheet" href="~/css/PortalLayout.css" asp-append-version="true" />
 </head>
 <body>
-    <div class="grid-container">
-        <header>
-            <a href="#!">
-                <strong>Money</strong>
+    <div>
+        <header class="portal-header background-light">
+            <span class="portal-header__logo">
+                <strong class="portal-header__logo--green">Money</strong>
                 <strong>Portal</strong>
-            </a>
-            <div class="menu-btn sidebar__trigger">
-                <span class="menu-btn__burger sidebar__burger"></span>
+            </span>
+            <div class="sidebar__trigger">
+                <span class="sidebar__burger"></span>
             </div>
         </header>
-        <div class="container">
+        <div class="portal-container">
             @(await Component.InvokeAsync("PortalSidebar")) 
-            <main>
-                <div class="page-header">
-                    <h2>@ViewData["Title"]</h2>
+            <main class="portal-content background-dark">
+                <div class="portal-content__title-container background-light">
+                    <h2 class="portal-content__title">@ViewData["Title"]</h2>
                 </div>
                 <div>
                     @RenderBody()

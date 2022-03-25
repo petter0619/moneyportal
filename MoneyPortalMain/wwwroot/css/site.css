@@ -37,6 +37,20 @@ body {
     font-family: "Muli", sans-serif;
 }
 
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+/* --------- STYLE CLASSES --------- */
+
+.background-dark {
+    background: var(--background-dark) !important;
+}
+
+.background-light {
+    background: var(--background-light) !important;
+}
 
 /* --------- FORMS --------- */
 
