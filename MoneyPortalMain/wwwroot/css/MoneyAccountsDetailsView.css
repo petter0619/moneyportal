@@ -1,2 +1,48 @@
 ﻿
+div>div>div {
+    min-height: 200px;
+    border: 1px dotted white;
+}
 
+.details-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas:
+        "buttons buttons buttons buttons"
+        "sumBalance sumSpending sumDeposits transactionsCount"
+        "addTransactionForm addTransactionForm addTransactionForm addTransactionForm"
+        "transactionsTable transactionsTable transactionsTable transactionsTable";
+
+    grid-gap: 1rem;
+    padding: 2rem;
+    padding
+}
+
+.details-container__buttons {
+    grid-area: buttons;
+}
+
+.details-container__sumBalance {
+    grid-area: sumBalance;
+}
+
+.details-container__sumSpending {
+    grid-area: sumSpending;
+}
+
+.details-container__sumDeposits {
+    grid-area: sumDeposits;
+}
+
+.details-container__transactionsCount {
+    grid-area: transactionsCount;
+}
+
+.details-container__addTransactionForm {
+    grid-area: addTransactionForm;
+}
+
+.details-container__transactionsTable {
+    grid-area: transactionsTable;
+}

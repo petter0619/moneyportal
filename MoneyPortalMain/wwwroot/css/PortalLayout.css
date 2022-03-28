@@ -57,7 +57,6 @@ html, body {
 .portal-content__title-container {
     color: #8a8d93;
     border-bottom: 1px solid var(--border-grey);
-    margin-bottom: 30px;
     padding: 20px 15px;
 }
 
