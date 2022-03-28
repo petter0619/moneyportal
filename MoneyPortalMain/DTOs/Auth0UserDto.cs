@@ -1,6 +1,6 @@
 ﻿namespace MoneyPortalMain.Models
 {
-    public class Auth0User
+    public class Auth0UserDto
     {
         public string _id { get; set; }
         public string email { get; set; }

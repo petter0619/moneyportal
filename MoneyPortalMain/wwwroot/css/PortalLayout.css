@@ -44,80 +44,13 @@ html, body {
     color: var(--primary-green);
 }
 
-.sidebar__trigger {
-    display: none;
-}
-
-
 /* -------- SIDEBAR RESPONSIVE - SHRINK -------- */
 
 @media only screen and (max-width: 768px) {
     .portal-container {
         grid-template-columns: 1fr;
     }
-
-    .sidebar__trigger {
-        display: block;
-    }
 }
-
-/* -------- HAMBURGER MENU -------- */
-
-.sidebar__trigger {
-    position: absolute;
-    z-index: 1;
-    right: 1rem;
-    top: 2rem;
-    height: 20px;
-    width: 28px;
-    cursor: pointer;
-    transition: all 0.5s ease-in-out;
-}
-
-.sidebar__burger {
-    position: absolute;
-    right: 0;
-    top: 6px;
-    width: 28px;
-    height: 3px;
-    background: var(--primary-text-color);
-    transition: all 0.5s ease-in-out;
-}
-
-.sidebar__burger::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    width: 28px;
-    height: 3px;
-    background: var(--primary-text-color);
-    transition: all 0.5s ease-in-out;
-}
-
-.sidebar__burger::after {
-    content: '';
-    position: absolute;
-    top: 8px;
-    width: 20px;
-    height: 3px;
-    background: var(--primary-text-color);
-    transition: all 0.5s ease-in-out;
-}
-
-.sidebar__burger.open {
-    transform: rotate(360deg);
-    background: transparent;
-}
-
-.sidebar__burger.open::before {
-    transform: rotate(45deg) translate(5px, 8px);
-}
-
-.sidebar__burger.open::after {
-    width: 28px;
-    transform: rotate(-45deg) translate(3px, -7px);
-}
-
 
 /* -------- PAGE TITLE -------- */
 

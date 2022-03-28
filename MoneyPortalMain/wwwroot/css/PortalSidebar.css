@@ -106,6 +106,64 @@
     content: "\f107" !important;
 }
 
+/* -------- HAMBURGER MENU -------- */
+
+.sidebar__trigger {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    right: 1rem;
+    top: 2rem;
+    height: 20px;
+    width: 28px;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+
+.sidebar__burger {
+    position: absolute;
+    right: 0;
+    top: 6px;
+    width: 28px;
+    height: 3px;
+    background: var(--primary-text-color);
+    transition: all 0.5s ease-in-out;
+}
+
+.sidebar__burger::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    width: 28px;
+    height: 3px;
+    background: var(--primary-text-color);
+    transition: all 0.5s ease-in-out;
+}
+
+.sidebar__burger::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    width: 20px;
+    height: 3px;
+    background: var(--primary-text-color);
+    transition: all 0.5s ease-in-out;
+}
+
+.sidebar__burger.open {
+    transform: rotate(360deg);
+    background: transparent;
+}
+
+.sidebar__burger.open::before {
+    transform: rotate(45deg) translate(5px, 8px);
+}
+
+.sidebar__burger.open::after {
+    width: 28px;
+    transform: rotate(-45deg) translate(3px, -7px);
+}
+
 /* -------- SIDEBAR RESPONSIVE - SHRINK -------- */
 @media only screen and (min-width: 768px) and (max-width: 1200px) {
     .sidebar {
@@ -176,5 +234,9 @@
     .sidebar__header {
         padding: 20px;
         width: 83%;
+    }
+
+    .sidebar__trigger {
+        display: block;
     }
 }

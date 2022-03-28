@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace MoneyPortalMain.Controllers
 {
     [Authorize]
-    public class AccountsController : Controller
+    public class MoneyAccountsController : Controller
     {
         //[AllowAnonymous]
-        [HttpGet("[controller]")]
+        [HttpGet("Accounts")]
         public IActionResult Index()
         {
             return View();
@@ -26,7 +26,7 @@ namespace MoneyPortalMain.Controllers
             return View();
         }
 
-        [HttpPost("[controller]/[action]")]
+        [HttpPost("Accounts/[action]")]
         public IActionResult Create()
         {
             return Ok("Create new savings/checking/cash/credit card account");

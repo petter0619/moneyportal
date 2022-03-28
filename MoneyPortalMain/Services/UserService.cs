@@ -47,7 +47,7 @@ namespace MoneyPortalMain.Services
             var client = _clientFactory.CreateClient("Auth0");
             var response = await client.PostAsync("/dbconnections/signup", content);
             response.EnsureSuccessStatusCode();
-            var responseBody = await response.Content.ReadFromJsonAsync<Auth0User>();
+            var responseBody = await response.Content.ReadFromJsonAsync<Auth0UserDto>();
 
             // Add user to database
             var createdUsers = _userRepository.AddNewUser(responseBody._id);
@@ -71,13 +71,13 @@ namespace MoneyPortalMain.Services
             var tokenContent = new FormUrlEncodedContent(tokenValues);
             var tokenResponse = await client.PostAsync("/oauth/token", tokenContent);
             tokenResponse.EnsureSuccessStatusCode();
-            var tokenResponseBody = await tokenResponse.Content.ReadFromJsonAsync<Auth0AccessToken>();
+            var tokenResponseBody = await tokenResponse.Content.ReadFromJsonAsync<Auth0AccessTokenDto>();
 
             // Get user profile (to get users email)
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokenResponseBody.access_token);
             var userResponse = await client.GetAsync("/api/v2/users/" + userId);
             userResponse.EnsureSuccessStatusCode();
-            var userResponseBody = await userResponse.Content.ReadFromJsonAsync<Auth0User>();
+            var userResponseBody = await userResponse.Content.ReadFromJsonAsync<Auth0UserDto>();
 
             // Change password
             var changePasswordValues = new Dictionary<string, string>

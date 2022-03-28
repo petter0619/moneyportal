@@ -1,6 +1,6 @@
 ﻿namespace MoneyPortalMain.Models
 {
-    public class Auth0AccessToken
+    public class Auth0AccessTokenDto
     {
         public string access_token { get; set; }
         public int expires_in { get; set; }
