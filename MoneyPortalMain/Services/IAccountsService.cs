@@ -1,9 +1,10 @@
-﻿using MoneyPortalMain.DTOs;
+﻿using MoneyPortalMain.Models;
 
 namespace MoneyPortalMain.Services
 {
     public interface IAccountsService
     {
-        public List<AccountDto> GetAllAccounts();
+        public List<Account> GetAllAccounts();
+        public Account GetAccountById(int accountId);
     }
 }

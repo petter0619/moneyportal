@@ -1,5 +1,5 @@
 ﻿@using MoneyPortalMain.DTOs
-@model List<AccountDto>
+@model List<Account>
 
 <link rel="stylesheet" href="~/css/PortalSidebar.css" asp-append-version="true" />
 
@@ -44,7 +44,7 @@
                         .Where(x => x.Type == "Checking Account" || x.Type == "Savings Account")
                         .ToList();
 
-                    @foreach (AccountDto account in bankAccounts)
+                    @foreach (Account account in bankAccounts)
                     {
                         <li>
                             <a href="/BankAccount/Details?id=@account.Id" class="sidebar__item sidebar__item--dropdown">
@@ -79,7 +79,7 @@
                         .Where(x => x.Type == "Credit Card")
                         .ToList();
 
-                    @foreach (AccountDto account in creditCards)
+                    @foreach (Account account in creditCards)
                     {
                         <li>
                             <a href="/CreditCard/Details?id=@account.Id" class="sidebar__item sidebar__item--dropdown">
@@ -107,7 +107,7 @@
                         .Where(x => x.Type == "Cash")
                         .ToList();
 
-                    @foreach (AccountDto account in cashReserves)
+                    @foreach (Account account in cashReserves)
                     {
                         <li>
                             <a href="/Cash/Details?id=@account.Id" class="sidebar__item sidebar__item--dropdown">

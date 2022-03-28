@@ -1,4 +1,4 @@
-﻿using MoneyPortalMain.DTOs;
+﻿using MoneyPortalMain.Models;
 
 namespace MoneyPortalMain.Services
 {
@@ -6,21 +6,29 @@ namespace MoneyPortalMain.Services
     {
         private readonly IUserService _userService;
 
+        private readonly new List<Account> _exampleAccounts;
+
         public AccountsService(IUserService userService)
         {
             _userService = userService;
+            _exampleAccounts = new List<Account>()
+            {
+                new Account() { Id = 1, Name = "Skandia", Type = "Checking Account" },
+                new Account() { Id = 2, Name = "ICA", Type = "Savings Account" },
+                new Account() { Id = 4, Name = "Cash", Type = "Cash" },
+                new Account() { Id = 5, Name = "Coop Kreditkort", Type = "Credit Card" },
+                new Account() { Id = 3, Name = "Revolut", Type = "Savings Account" }
+            };
         }
 
-        public List<AccountDto> GetAllAccounts()
+        public List<Account> GetAllAccounts()
         {
-            return new List<AccountDto>()
-            {
-                new AccountDto() { Id = 1, Name = "Skandia", Type = "Checking Account" },
-                new AccountDto() { Id = 2, Name = "ICA", Type = "Savings Account" },
-                new AccountDto() { Id = 4, Name = "Cash", Type = "Cash" },
-                new AccountDto() { Id = 5, Name = "Coop Kreditkort", Type = "Credit Card" },
-                new AccountDto() { Id = 3, Name = "Revolut", Type = "Savings Account" }
-            };
+            return _exampleAccounts;
+        }
+
+        public Account GetAccountById(int accountId)
+        {
+            return _exampleAccounts.FirstOrDefault(a => a.Id == accountId);
         }
     }
 }

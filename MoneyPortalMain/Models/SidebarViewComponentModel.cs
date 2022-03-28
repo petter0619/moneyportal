@@ -4,7 +4,7 @@ namespace MoneyPortalMain.Models
 {
     public class SidebarViewComponentModel
     {
-        public List<AccountDto> AccountsList { get; set; }
+        public List<Account> AccountsList { get; set; }
         public UserInfoDto CurrentUser { get; set; }
     }
 }

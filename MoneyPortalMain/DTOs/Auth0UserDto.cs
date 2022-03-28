@@ -1,4 +1,4 @@
-﻿namespace MoneyPortalMain.Models
+﻿namespace MoneyPortalMain.DTOs
 {
     public class Auth0UserDto
     {

@@ -1,11 +1,19 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MoneyPortalMain.Services;
 
 namespace MoneyPortalMain.Controllers
 {
     [Authorize]
     public class MoneyAccountsController : Controller
     {
+        private readonly IAccountsService _accountsService;
+
+        public MoneyAccountsController(IAccountsService accountsService)
+        {
+            _accountsService = accountsService;
+        }
+
         //[AllowAnonymous]
         [HttpGet("Accounts")]
         public IActionResult Index()
@@ -23,7 +31,14 @@ namespace MoneyPortalMain.Controllers
                 return NotFound();
             }
 
-            return View();
+            var account = _accountsService.GetAccountById(accountId);
+
+            if (accountId == null)
+            {
+                return NotFound();
+            }
+
+            return View(account);
         }
 
         [HttpPost("Accounts/[action]")]
