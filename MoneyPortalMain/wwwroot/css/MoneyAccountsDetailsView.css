@@ -1,9 +1,4 @@
 ﻿
-div>div>div {
-    min-height: 200px;
-    border: 1px dotted white;
-}
-
 .details-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -13,14 +8,63 @@ div>div>div {
         "sumBalance sumSpending sumDeposits transactionsCount"
         "addTransactionForm addTransactionForm addTransactionForm addTransactionForm"
         "transactionsTable transactionsTable transactionsTable transactionsTable";
-
+    
     grid-gap: 1rem;
     padding: 2rem;
-    padding
+    color: var(--primary-text-color);
 }
 
 .details-container__buttons {
     grid-area: buttons;
+
+    height: max-content;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.details-container__button {
+    border-radius: 0.5rem;
+    padding: 0.6rem 0.5rem;
+    font-weight: bold;
+    color: inherit;
+    transition: 0.2s ease-in;
+}
+
+.details-container__button--edit {
+    background-color: var(--background-light);
+    border-color: var(--background-light);
+    margin-right: 1rem;
+}
+
+    .details-container__button--edit:hover {
+        color: var(--primary-green);
+    }
+
+.details-container__button--delete {
+    background-color: maroon;
+    border-color: maroon;
+}
+
+    .details-container__button--delete:hover {
+        /*background-color: #B22222;*/
+        background-color: var(--background-light);
+        border-color: var(--background-light);
+        color: #B22222;
+    }
+
+.details-container__statisticBox {
+    background: var(--background-light);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.details-container__statistic {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
+    font-weight: bold;
 }
 
 .details-container__sumBalance {

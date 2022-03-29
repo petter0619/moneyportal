@@ -6,5 +6,6 @@ namespace MoneyPortalMain.Services
     {
         public List<Account> GetAllAccounts();
         public Account GetAccountById(int accountId);
+        public MoneyAccountsDetailsViewModel GenerateMoneyAccountsDetailsViewModel(int accountId);
     }
 }

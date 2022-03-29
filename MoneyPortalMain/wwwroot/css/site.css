@@ -8,6 +8,7 @@
 :root {
     --primary-green: #3d8542;
     --primary-red: #ff3f3f;
+    --primary-yellow: #f8c14a;
     --background-dark: #22252a;
     --background-light: #2d3035;
     --primary-text-color: #8a8d93;
@@ -50,6 +51,22 @@ ul {
 
 .background-light {
     background: var(--background-light) !important;
+}
+
+.color-green {
+    color: var(--primary-green);
+}
+
+.color-red {
+    color: var(--primary-red);
+}
+
+.color-maroon {
+    color: #B22222;
+}
+
+.color-yellow {
+    color: var(--primary-yellow);
 }
 
 /* --------- FORMS --------- */

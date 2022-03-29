@@ -30,5 +30,58 @@ namespace MoneyPortalMain.Services
         {
             return _exampleAccounts.FirstOrDefault(a => a.Id == accountId);
         }
+
+        public MoneyAccountsDetailsViewModel GenerateMoneyAccountsDetailsViewModel(int accountId)
+        { 
+            var account = GetAccountById(accountId);
+
+            return new MoneyAccountsDetailsViewModel()
+            {
+                AccountName = account.Name,
+                CurrentBalance = 37550.94,
+                MonthlySpending = 5390.00,
+                MonthlyDeposits = 2940.94,
+                MonthlyTransactions = 18,
+                TransactionsList = new List<Transaction>()
+                {
+                    new Transaction()
+                    {
+                        Id = 1,
+                        Memo = "Matköp lördag",
+                        Amount = 500.00,
+                        Date = new DateTime(2022, 3, 26, 0, 0, 0),
+                        Type = "Debit Card",
+                        Store = "Daglivs Fridhemsplan"
+                    },
+                    new Transaction()
+                    {
+                        Id = 3,
+                        Memo = "Lunch med AFRY gänget (pannkakor)",
+                        Amount = 115.00,
+                        Date = new DateTime(2022, 3, 25, 0, 0, 0),
+                        Type = "Debit Card",
+                        Store = "Sabis Haga"
+                    },
+                    new Transaction()
+                    {
+                        Id = 3,
+                        Memo = "Lysa Invest",
+                        Amount = 3000.00,
+                        Date = new DateTime(2022, 3, 25, 0, 0, 0),
+                        Type = "Transfer",
+                        Store = "Sabis Haga"
+                    },
+                    new Transaction()
+                    {
+                        Id = 2,
+                        Memo = "Lön",
+                        Amount = 23611.00,
+                        Date = new DateTime(2022, 3, 25, 0, 0, 0),
+                        Type = "Deposit",
+                        Store = "Daglivs Fridhemsplan"
+                    },
+                }
+            };
+        }
     }
 }

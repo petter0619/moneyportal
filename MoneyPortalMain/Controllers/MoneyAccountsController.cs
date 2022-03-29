@@ -14,7 +14,6 @@ namespace MoneyPortalMain.Controllers
             _accountsService = accountsService;
         }
 
-        //[AllowAnonymous]
         [HttpGet("Accounts")]
         public IActionResult Index()
         {
@@ -31,7 +30,7 @@ namespace MoneyPortalMain.Controllers
                 return NotFound();
             }
 
-            var account = _accountsService.GetAccountById(accountId);
+            var account = _accountsService.GenerateMoneyAccountsDetailsViewModel(accountId);
 
             if (accountId == null)
             {
