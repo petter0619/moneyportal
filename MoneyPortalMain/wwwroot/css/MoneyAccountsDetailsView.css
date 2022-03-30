@@ -30,6 +30,10 @@
     transition: 0.2s ease-in;
 }
 
+    .details-container__button:hover {
+        cursor: pointer;
+    }
+
 .details-container__button--edit {
     background-color: var(--background-light);
     border-color: var(--background-light);
@@ -46,10 +50,7 @@
 }
 
     .details-container__button--delete:hover {
-        /*background-color: #B22222;*/
-        background-color: var(--background-light);
-        border-color: var(--background-light);
-        color: #B22222;
+        background-color: #B22222;
     }
 
 .details-container__statisticBox {

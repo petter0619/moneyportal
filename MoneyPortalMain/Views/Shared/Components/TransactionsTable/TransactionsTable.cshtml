@@ -1,0 +1,29 @@
+﻿@model List<Transaction>
+
+<link rel="stylesheet" href="~/css/TransactionsTable.css" asp-append-version="true" />
+
+<div class="transactionTable">
+    @foreach(Transaction transaction in Model)
+    {
+        <div class="transactionTable__row">
+            <div class="transactionTable__cell">
+                <span>
+                    @String.Format("{0:N}", transaction.Amount) kr
+                </span>
+                <span class="transactionTable__smallText">@transaction.Type</span>
+            </div>
+            <div class="transactionTable__cell">
+                <span>@transaction.Memo</span>
+                <span class="transactionTable__smallText">@transaction.Store</span>
+            </div>
+            <div class="transactionTable__cell">
+                <span>@transaction.Date.ToString("yyyy-MM-dd")</span>
+                <span class="transactionTable__smallText"></span>
+            </div>
+            <div class="transactionTable__cell transactionTable__cell--buttons">
+                <button class="transactionTable__iconButton color-green"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button class="transactionTable__iconButton color-maroon"><i class="fa-solid fa-trash-can"></i></button>
+            </div>
+        </div>
+    }
+</div>

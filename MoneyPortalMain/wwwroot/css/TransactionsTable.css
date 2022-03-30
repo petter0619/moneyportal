@@ -1,0 +1,41 @@
+﻿
+.transactionTable {
+    width: 100%;
+}
+
+.transactionTable__row {
+    display: grid;
+    grid-template-columns: 15% 1fr 20% auto;
+    border: 1px solid var(--background-light);
+}
+
+.transactionTable__cell {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+
+.transactionTable__cell--buttons {
+    flex-direction: row;
+}
+
+.transactionTable__iconButton {
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+}
+
+    .transactionTable__iconButton:hover {
+        opacity: 0.8;
+        cursor: pointer;
+    }
+
+    .transactionTable__iconButton:active {
+        opacity: 0.5;
+    }
+
+.transactionTable__smallText {
+    margin-top: 8px;
+    font-size: 0.8rem;
+}
