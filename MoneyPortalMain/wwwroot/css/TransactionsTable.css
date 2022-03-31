@@ -5,9 +5,27 @@
 
 .transactionTable__row {
     display: grid;
-    grid-template-columns: 15% 1fr 20% auto;
+    grid-template-columns: 15% 1fr 20% 94px;
     border: 1px solid var(--background-light);
 }
+
+    .transactionTable__row:nth-of-type(even) {
+        background-color: #282b2f;
+    }
+
+    .transactionTable__row:hover {
+        background: #26292d;
+    }
+
+.transactionTable__row--header {
+    border: none;
+    font-weight: bold;
+
+}
+
+    .transactionTable__row--header:hover {
+        background: transparent;
+    }
 
 .transactionTable__cell {
     display: flex;
@@ -39,3 +57,65 @@
     margin-top: 8px;
     font-size: 0.8rem;
 }
+
+.transactionTable__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+}
+
+.transactionTable__showInfo {
+
+}
+
+.transactionTable__pagination {
+
+}
+
+.transactionTable__paginationButton {
+    font-size: 1rem;
+    min-width: 1.5em;
+    padding: 0.5em 1em;
+    margin-left: 2px;
+    text-align: center;
+    cursor: pointer;
+    color: inherit;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    background: transparent;
+    box-shadow: none;
+}
+
+    .transactionTable__paginationButton:hover {
+        color: var(--primary-green);
+        border: 1px solid #111;
+        background-color: #585858;
+        background: linear-gradient(to bottom, #585858 0%, #111 100%);
+    }
+
+    .transactionTable__paginationButton:focus {
+        opacity: 0.5;
+    }
+
+    .transactionTable__paginationButton:disabled {
+        cursor: default;
+        color: #666 !important;
+    }
+
+    .transactionTable__paginationButton:disabled:hover {
+        border: 1px solid transparent;
+        background: transparent;
+        box-shadow: none;
+    }
+
+.transactionTable__paginationButton--currentPage {
+    border: 1px solid var(--primary-green) !important;
+    color: var(--primary-green);
+}
+
+    .transactionTable__paginationButton--currentPage:hover {
+        color: var(--primary-green) !important;
+        border: 1px solid var(--primary-green) !important;
+        background: transparent;
+    }

@@ -3,6 +3,12 @@
 <link rel="stylesheet" href="~/css/TransactionsTable.css" asp-append-version="true" />
 
 <div class="transactionTable">
+    <div class="transactionTable__row transactionTable__row--header">
+        <div class="transactionTable__cell">Amount</div>
+        <div class="transactionTable__cell">Memo</div>
+        <div class="transactionTable__cell">Date</div>
+        <div class="transactionTable__cell"></div>
+    </div>
     @foreach(Transaction transaction in Model)
     {
         <div class="transactionTable__row">
@@ -26,4 +32,24 @@
             </div>
         </div>
     }
+    <div class="transactionTable__footer">
+        <div class="transactionTable__showInfo">
+            Showing 1 to 10 of 14 transactions
+        </div>
+        <div class="transactionTable__pagination">
+            <button class="transactionTable__paginationButton" disabled>Previous</button>
+            @for(int i = 1; i < 3 ;i++)
+            {
+                @if (i == 1)
+                {
+                    <button class="transactionTable__paginationButton transactionTable__paginationButton--currentPage">@i</button>
+                }
+                else
+                {
+                    <button class="transactionTable__paginationButton">@i</button>
+                }
+            }
+            <button class="transactionTable__paginationButton">Next</button>
+        </div>
+    </div>
 </div>
