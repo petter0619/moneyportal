@@ -56,7 +56,41 @@
         </span>
     </div>
 
-    <div class="details-container__addTransactionForm">Add Transaction Form</div>
+    <form class="details-container__addTransactionForm addTransactionForm">
+        <p class="addTransactionForm__title">Add Transaction</p>
+        <div class="addTransactionForm__inputGroup addTransactionForm__inputGroup--amount">
+            <label for="amount" class="addTransactionForm__label">Amount</label>
+            <div class="addTransactionForm__inputAmountContainer">
+                <input type="number" name="amount" class="addTransactionForm__input addTransactionForm__input--amount" />
+                <span class="addTransactionForm__inputAddendum">.00 kr</span>
+            </div>
+        </div>
+        <div class="addTransactionForm__inputGroup addTransactionForm__inputGroup--transactionType">
+            <label for="transactionType" class="addTransactionForm__label">Transaction Type</label>
+            <select name="transactionType" class="addTransactionForm__input addTransactionForm__input--select" >
+                <option value="cash">Cash</option>
+                <option value="deposit">Deposit</option>
+                <option value="transfer">Transfer</option>
+                <option value="withdrawal">Withdrawal</option>
+                <option value="debitCard">Debit Card</option>
+                <option value="swish">Swish</option>
+            </select>
+        </div>
+        <div class="addTransactionForm__inputGroup addTransactionForm__inputGroup--date">
+            <label for="date" class="addTransactionForm__label">Date</label>
+            <input type="date" name="date" class="addTransactionForm__input" value=@DateTime.Today />
+        </div>
+        <div class="addTransactionForm__inputGroup addTransactionForm__inputGroup--memo">
+            <label for="memo" class="addTransactionForm__label">Memo</label>
+            <input type="text" name="memo" class="addTransactionForm__input" />
+        </div>
+        <div class="addTransactionForm__inputGroup addTransactionForm__inputGroup--store">
+            <label for="store" class="addTransactionForm__label">Store</label>
+            <input type="text" name="store" class="addTransactionForm__input" />
+        </div>
+        <button type="submit" class="addTransactionForm__submit" disabled>Add</button>
+    </form>
+
     <div class="details-container__transactionsTable">
         @(await Component.InvokeAsync("TransactionsTable", new { TransactionsList = Model.TransactionsList }))
     </div>
