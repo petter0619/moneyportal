@@ -5,6 +5,7 @@
 
 appsettings.Development.json
 MoneyPortalDev.db*
+.vscode/
 
 # User-specific files
 *.rsuser

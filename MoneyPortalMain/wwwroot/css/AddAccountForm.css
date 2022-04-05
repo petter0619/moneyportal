@@ -1,0 +1,14 @@
+﻿.addAccountPopup {
+    display: none;
+    position: absolute;
+
+
+    height: 200px;
+    width: 200px;
+    background: grey;
+    top: 0;
+}
+
+    .addAccountPopup.addAccountPopup--open {
+        display: block;
+    }
