@@ -1,8 +1,32 @@
 ﻿<link rel="stylesheet" href="~/css/AddAccountForm.css" asp-append-version="true" />
 
 <div class="addAccountPopup">
-    <form>
-        <h2>Add New Account Form</h2>
+    <div class="addAccountPopup__header">
+        <h2>Add Account</h2>
+        <button class="addAccountPopup__closeButton">X</button>
+    </div>
+    <form class="addAccountForm" autocomplete="off">
+        <div class="addAccountForm__inputGroup">
+            <label for="name" class="addAccountForm__label">Account Name</label>
+            <input type="text" name="name" class="addAccountForm__input" />
+        </div>
+        <div class="addAccountForm__inputGroup">
+            <label for="accountType" class="addAccountForm__label">Account Type</label>
+            <select name="accountType" class="addAccountForm__input addAccountForm__input--select" >
+                <option value="checking">Checking</option>
+                <option value="savings">Savings</option>
+                <option value="creditCard">Credit Card</option>
+                <option value="cash">Cash</option>
+            </select>
+        </div>
+        <div class="addAccountForm__inputGroup addAccountForm__inputGroup--amount">
+            <label for="amount" class="addAccountForm__label">Starting Balance</label>
+            <div class="addAccountForm__inputAmountContainer">
+                <input type="number" name="amount" class="addAccountForm__input addAccountForm__input--amount" />
+                <span class="addAccountForm__inputAddendum">.00 kr</span>
+            </div>
+        </div>
+        <button type="submit" class="addAccountForm__submit" disabled>Create</button>
     </form>
 </div>
 

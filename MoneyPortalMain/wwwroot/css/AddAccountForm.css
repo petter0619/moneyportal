@@ -1,14 +1,141 @@
-﻿.addAccountPopup {
+﻿
+.addAccountPopup {
     display: none;
     position: absolute;
+    padding: 2rem;
+    border: 1px solid var(--primary-green);
 
-
-    height: 200px;
-    width: 200px;
-    background: grey;
-    top: 0;
+    height: max-content;
+    width: 280px;
+    background: var(--background-light);
+    left: calc(50% - ((280px + 2rem)/2));
+    top: 15%;
 }
 
     .addAccountPopup.addAccountPopup--open {
         display: block;
+    }
+
+.addAccountPopup__header {
+    display: flex;
+    justify-content: space-between;
+    color: #979a9f;
+    border-bottom: 1px solid rgba(151, 154, 159, 0.7);
+    margin-bottom: 1.5rem; 
+}
+
+.addAccountPopup__closeButton {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.5rem;
+}
+
+    .addAccountPopup__closeButton:hover {
+        opacity: 0.7;
+    }
+
+    .addAccountPopup__closeButton:active {
+        opacity: 0.4;
+    }
+
+.addAccountForm {
+
+}
+
+.addAccountForm__inputGroup {
+    margin-bottom: 1rem;
+    padding: 0;
+}
+
+.addAccountForm__label {
+    color: #777;
+    font-size: 1rem;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.addAccountForm__input {
+    display: block;
+    border: 1px solid #444951;
+    background: transparent;
+    border-radius: 0;
+    color: #979a9f;
+    padding: 0.45rem 5px;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    margin: 0;
+    box-sizing: border-box;
+    height: 40px;
+}
+
+    .addAccountForm__input:focus {
+        color: #979a9f;
+        background-color: transparent;
+        border-color: var(--primary-green);
+        outline: none;
+    }
+
+.addAccountForm__inputAmountContainer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr max-content;
+}
+    
+    .addAccountForm__input--amount {
+        display: inline-block;
+        text-align: right;
+        padding-right: 1rem;
+    }
+    
+        .addAccountForm__input--amount::-webkit-outer-spin-button,
+        .addAccountForm__input--amount::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+            -moz-appearance: textfield;
+        }
+    
+    .addAccountForm__inputAddendum {
+        box-sizing: border-box;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        padding: 0.44rem 10px;
+        color: #979a9f;
+        border: 1px solid #444951;
+        border-bottom-right-radius: 7px;
+        border-top-right-radius: 7px;
+        border-left: none;
+        width: max-content;
+        background-color: #26292d;
+    }
+
+.addAccountForm__submit {
+    font-family: inherit;
+    font-weight: 300;
+    background-color: var(--primary-green);
+    border-color: var(--primary-green);
+    border: 1px solid transparent;
+    padding: 0.45rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    width: max-content;
+}
+
+    .addAccountForm__submit:hover {
+        opacity: 0.9;
+    }
+
+    .addAccountForm__submit:focus {
+        opacity: 0.7;
     }
